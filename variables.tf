@@ -82,7 +82,7 @@ variable "use_database_cluster" {
 }
 
 variable "use_hostname" {
-  type = bool
+  type        = bool
   description = "Whether or not we should create a target group and listener to attach this service to a load balancer"
 }
 
