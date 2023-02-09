@@ -21,7 +21,7 @@ module "service_container_definition" {
   version = "0.58.1"
 
   container_name   = var.service_name
-  container_image  = "${var.ecr_host}/${var.service_name}:60"
+  container_image  = "${var.ecr_host}/${var.service_name}:latest"
   container_memory = 2048
   essential        = true
   environment      = var.environment_variables
