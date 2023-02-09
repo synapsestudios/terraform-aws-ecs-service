@@ -28,7 +28,8 @@ resource "aws_ecs_service" "this" {
     ]
   }
 
-  deployment_controller {
-    type = "ECS"
+  deployment_circuit_breaker {
+    enable   = true
+    rollback = true
   }
 }
