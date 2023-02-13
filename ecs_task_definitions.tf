@@ -25,7 +25,7 @@ module "service_container_definition" {
   container_memory = 2048
   essential        = true
   environment      = var.environment_variables
-  port_mappings    = [{ hostPort = var.container_port, containerPort = var.container_port, protocol = "tcp" }]
+  port_mappings    = var.host_port != null ? [{ hostPort = var.host_port, containerPort = var.container_port, protocol = "tcp" }] : [{ hostPort = var.container_port, containerPort = var.container_port, protocol = "tcp" }]
   command          = var.command
   secrets = var.use_database_cluster ? concat([{
     name      = "DATABASE_URL"
