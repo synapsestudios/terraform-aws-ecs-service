@@ -2,6 +2,12 @@
 
 This is a highly-opinionated ECS Service module for the Synapse Platform. It currently does NOT support blue-green deploys, autoscaling, customizing container sizes, or sidecar containers. It is also overly restrictive with the task role permissions.
 
+# Known Issues:
+
+Currently we're aware of a bug occurring when trying to change container ports. If you change the container port, the service will not be able to start up due to an association bug between the load balancer target group health check and the ECS service. To correctly update the container port, you must first destroy the service, then update the container port, then re-create the service manually. This is a known issue with Terraform and AWS.
+
+You can do this by commenting out the entire module, running a terraform apply, then uncommenting the module and running a terraform apply again after you've updated the container port.
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
