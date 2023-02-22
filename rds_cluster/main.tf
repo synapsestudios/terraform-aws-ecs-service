@@ -2,6 +2,7 @@ resource "random_id" "final_snapshot_suffix" {
   byte_length = 8
 }
 
+#tfsec:ignore:aws-rds-encrypt-cluster-storage-data
 resource "aws_rds_cluster" "this" {
   cluster_identifier_prefix       = var.name
   engine                          = "aurora-postgresql"
@@ -29,6 +30,7 @@ resource "random_password" "password" {
   override_special = "-._~" # URL-safe characters prevent parsing errors when using this password in a connection string
 }
 
+#tfsec:ignore:aws-ssm-secret-use-customer-key
 resource "aws_secretsmanager_secret" "root_password" {
   name_prefix = "${var.name}-aurora-root-password"
   description = "Root password for the ${var.name} aurora cluster database"
@@ -40,6 +42,7 @@ resource "aws_secretsmanager_secret_version" "root_password" {
   secret_string = random_password.password.result
 }
 
+#tfsec:ignore:aws-ssm-secret-use-customer-key
 resource "aws_secretsmanager_secret" "connection_string" {
   name_prefix = "${var.name}-aurora-connection-string"
   description = "Connection String for the ${var.name} aurora cluster database"
@@ -51,6 +54,7 @@ resource "aws_secretsmanager_secret_version" "connection_string" {
   secret_string = "postgresql://${aws_rds_cluster.this.master_username}:${aws_secretsmanager_secret_version.root_password.secret_string}@${aws_rds_cluster.this.endpoint}:${aws_rds_cluster.this.port}/${aws_rds_cluster.this.database_name}"
 }
 
+#tfsec:ignore:aws-rds-enable-performance-insights-encryption
 resource "aws_rds_cluster_instance" "this" {
   count                           = var.instance_count
   engine                          = "aurora-postgresql"

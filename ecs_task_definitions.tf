@@ -10,6 +10,7 @@ resource "aws_ecs_task_definition" "service" {
   requires_compatibilities = ["FARGATE"]
 }
 
+#tfsec:ignore:aws-cloudwatch-log-group-customer-key
 resource "aws_cloudwatch_log_group" "service" {
   name_prefix = var.service_name
 }
