@@ -2,7 +2,6 @@ resource "aws_security_group" "ecs_task" {
   description = "ECS Tasks traffic rules"
   vpc_id      = var.vpc_id
   name_prefix = "${var.service_name}-ecs-task-default"
-  #  tags        = merge(var.tags, { Name = "ECSTasks" }) # TODO
 
   egress {
     from_port   = 0

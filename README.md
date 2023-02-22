@@ -25,7 +25,7 @@ You can do this by commenting out the entire module, running a terraform apply, 
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_database"></a> [database](#module\_database) | git::https://github.com/synapsestudios/terraform-aws-rds-aurora-cluster.git | v1.0.0 |
+| <a name="module_database"></a> [database](#module\_database) | ./rds_cluster | n/a |
 | <a name="module_service_container_definition"></a> [service\_container\_definition](#module\_service\_container\_definition) | cloudposse/ecs-container-definition/aws | 0.58.1 |
 
 ## Resources
@@ -58,9 +58,12 @@ You can do this by commenting out the entire module, running a terraform apply, 
 | <a name="input_azs"></a> [azs](#input\_azs) | Availability zones | `list(string)` | n/a | yes |
 | <a name="input_cluster_arn"></a> [cluster\_arn](#input\_cluster\_arn) | ECS cluster to deploy into | `string` | n/a | yes |
 | <a name="input_command"></a> [command](#input\_command) | Container startup command | `list(string)` | n/a | yes |
+| <a name="input_container_image"></a> [container\_image](#input\_container\_image) | Image tag of the Docker container to use for this service | `string` | n/a | yes |
 | <a name="input_container_port"></a> [container\_port](#input\_container\_port) | Port exposed by the container | `number` | n/a | yes |
 | <a name="input_container_secrets"></a> [container\_secrets](#input\_container\_secrets) | The Secrets to Pass to the container. | <pre>list(object({<br>    name      = string<br>    valueFrom = string<br>  }))</pre> | `[]` | no |
-| <a name="input_ecr_host"></a> [ecr\_host](#input\_ecr\_host) | Hostname of the ECR repository with no trailing slash | `string` | n/a | yes |
+| <a name="input_db_instance_class"></a> [db\_instance\_class](#input\_db\_instance\_class) | Size of instances within the RDS cluster | `string` | `"db.t4g.medium"` | no |
+| <a name="input_db_instance_count"></a> [db\_instance\_count](#input\_db\_instance\_count) | How many RDS instances to create | `number` | `1` | no |
+| <a name="input_db_name"></a> [db\_name](#input\_db\_name) | Name of the postgres database to create, if creating an RDS cluster | `string` | `"main"` | no |
 | <a name="input_ecs_desired_count"></a> [ecs\_desired\_count](#input\_ecs\_desired\_count) | How many tasks to launch in ECS service | `number` | `1` | no |
 | <a name="input_environment_variables"></a> [environment\_variables](#input\_environment\_variables) | The environment variables to pass to the container. This is a list of maps. | <pre>list(object({<br>    name  = string<br>    value = string<br>  }))</pre> | `[]` | no |
 | <a name="input_health_check_path"></a> [health\_check\_path](#input\_health\_check\_path) | Path to use for health checks | `string` | n/a | yes |
