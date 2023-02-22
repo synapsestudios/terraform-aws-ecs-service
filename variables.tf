@@ -97,3 +97,21 @@ variable "ecs_desired_count" {
   default     = 1
   description = "How many tasks to launch in ECS service"
 }
+
+variable "db_name" {
+  type        = string
+  default     = "main"
+  description = "Name of the postgres database to create, if creating an RDS cluster"
+}
+
+variable "db_instance_class" {
+  type        = string
+  default     = "db.t4g.medium"
+  description = "Size of instances within the RDS cluster"
+}
+
+variable "db_instance_count" {
+  type        = number
+  default     = 1
+  description = "How many RDS instances to create"
+}
