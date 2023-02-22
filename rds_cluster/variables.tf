@@ -44,8 +44,3 @@ variable "instance_class" {
   type        = string
   description = "Instance class"
 }
-
-variable "kms_key_id" {
-  type        = string
-  description = "ARN of the KMS key to use for encrypting the database, secrets, and performance insights"
-}
