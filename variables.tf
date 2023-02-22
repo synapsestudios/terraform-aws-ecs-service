@@ -13,9 +13,9 @@ variable "subnets" {
   description = "List of subnet names the service will reside on."
 }
 
-variable "ecr_host" {
+variable "container_image" {
   type        = string
-  description = "Hostname of the ECR repository with no trailing slash"
+  description = "Image tag of the Docker container to use for this service"
 }
 
 variable "azs" {

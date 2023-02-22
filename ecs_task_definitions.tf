@@ -8,12 +8,10 @@ resource "aws_ecs_task_definition" "service" {
   memory                   = 2048
   cpu                      = 1024
   requires_compatibilities = ["FARGATE"]
-  #  tags                     = var.tags # TODO
 }
 
 resource "aws_cloudwatch_log_group" "service" {
   name_prefix = var.service_name
-  #  tags = var.tags # TODO
 }
 
 module "service_container_definition" {
@@ -21,7 +19,7 @@ module "service_container_definition" {
   version = "0.58.1"
 
   container_name   = var.service_name
-  container_image  = "${var.ecr_host}/${var.service_name}:latest"
+  container_image  = var.container_image
   container_memory = 2048
   essential        = true
   environment      = var.environment_variables

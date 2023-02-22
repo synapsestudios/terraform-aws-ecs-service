@@ -29,7 +29,7 @@ resource "aws_iam_policy" "kms_decryption" {
           "kms:Decrypt",
         ]
         Effect   = "Allow"
-        Resource = "*"
+        Resource = aws_kms_key.kms.arn
       },
     ]
   })
