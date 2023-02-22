@@ -21,11 +21,11 @@ module "service_container_definition" {
   version = "0.58.1"
 
   container_name   = var.service_name
-  container_image  = "${var.ecr_host}/${var.service_name}:60"
+  container_image  = "${var.ecr_host}/${var.service_name}:latest"
   container_memory = 2048
   essential        = true
   environment      = var.environment_variables
-  port_mappings    = [{ hostPort = var.container_port, containerPort = var.container_port, protocol = "tcp" }]
+  port_mappings    = var.host_port != null ? [{ hostPort = var.host_port, containerPort = var.container_port, protocol = "tcp" }] : [{ hostPort = var.container_port, containerPort = var.container_port, protocol = "tcp" }]
   command          = var.command
   secrets = var.use_database_cluster ? concat([{
     name      = "DATABASE_URL"

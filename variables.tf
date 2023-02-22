@@ -71,6 +71,12 @@ variable "container_port" {
   description = "Port exposed by the container"
 }
 
+variable "host_port" {
+  type        = number
+  description = "Port exposed by the host"
+  default     = null
+}
+
 variable "health_check_path" {
   type        = string
   description = "Path to use for health checks"
@@ -82,7 +88,7 @@ variable "use_database_cluster" {
 }
 
 variable "use_hostname" {
-  type = bool
+  type        = bool
   description = "Whether or not we should create a target group and listener to attach this service to a load balancer"
 }
 

@@ -7,6 +7,10 @@ resource "aws_lb_target_group" "this" {
   vpc_id               = var.vpc_id
   #  tags                 = var.tags # TODO
 
+  lifecycle {
+    create_before_destroy = true
+  }
+
   health_check {
     enabled             = true
     interval            = 5

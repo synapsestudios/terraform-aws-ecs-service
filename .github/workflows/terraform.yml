@@ -1,0 +1,16 @@
+name: "Terraform"
+on:
+  pull_request:
+    branches:
+      - "*"
+      - "*/*"
+      - "**"
+
+jobs:
+  terraform-format-test:
+    uses: ./.github/workflows/terraform_format.yml
+  tfsec-pr-commenter:
+    uses: ./.github/workflows/tfsec_pr_commenter.yml
+  terraform-docs:
+    needs: [terraform-format-test, tfsec-pr-commenter]
+    uses: ./.github/workflows/documentation.yml
