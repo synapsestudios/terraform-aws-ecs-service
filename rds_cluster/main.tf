@@ -2,6 +2,10 @@ resource "random_id" "final_snapshot_suffix" {
   byte_length = 8
 }
 
+resource "aws_kms_key" "kms" {
+  description = "${var.name} Aurora KMS key"
+}
+
 resource "aws_rds_cluster" "this" {
   cluster_identifier_prefix       = var.name
   engine                          = "aurora-postgresql"
@@ -13,6 +17,7 @@ resource "aws_rds_cluster" "this" {
   master_password                 = aws_secretsmanager_secret_version.root_password.secret_string
   db_subnet_group_name            = aws_db_subnet_group.this.name
   storage_encrypted               = true
+  kms_key_id                      = aws_kms_key.kms.arn
   availability_zones              = var.availability_zones
   preferred_backup_window         = "07:00-09:00"
   backup_retention_period         = 30
@@ -52,14 +57,15 @@ resource "aws_secretsmanager_secret_version" "connection_string" {
 }
 
 resource "aws_rds_cluster_instance" "this" {
-  count                = var.instance_count
-  engine               = "aurora-postgresql"
-  engine_version       = "14.6"
-  identifier_prefix    = "${var.name}-${count.index + 1}"
-  cluster_identifier   = aws_rds_cluster.this.id
-  instance_class       = var.instance_class
-  db_subnet_group_name = aws_db_subnet_group.this.name
-  tags                 = var.tags
+  count                        = var.instance_count
+  engine                       = "aurora-postgresql"
+  engine_version               = "14.6"
+  identifier_prefix            = "${var.name}-${count.index + 1}"
+  performance_insights_enabled = true
+  cluster_identifier           = aws_rds_cluster.this.id
+  instance_class               = var.instance_class
+  db_subnet_group_name         = aws_db_subnet_group.this.name
+  tags                         = var.tags
 }
 
 resource "aws_db_subnet_group" "this" {
@@ -79,12 +85,14 @@ resource "aws_security_group" "this" {
     to_port     = 5432
     protocol    = "tcp"
     cidr_blocks = [data.aws_vpc.database_vpc.cidr_block]
+    description = "Database ingress"
   }
   egress {
     from_port   = 5432
     to_port     = 5432
     protocol    = "tcp"
     cidr_blocks = [data.aws_vpc.database_vpc.cidr_block]
+    description = "Database egress"
   }
 }
 
