@@ -112,8 +112,8 @@ variable "db_instance_count" {
 }
 
 variable "container_definitions" {
-  type        = list(object(any))
-  description = "List of decoded container definitions to use for this service"
+  type        = string
+  description = "A list of valid container definitions provided as a single valid JSON document. By default, this module will generate a container definition for you. If you need to provide your own or have multiple, you can do so here."
   default     = null
 }
 
