@@ -1,7 +1,7 @@
 
 resource "aws_ecs_task_definition" "service" {
   family                   = var.service_name
-  container_definitions    = var.container_definition_json != null ? "[${var.container_definition_json}]" : "[${module.service_container_definition.json_map_encoded}]"
+  container_definitions    = var.container_definitions != null ? jsonencode(var.container_definitions) : "[${module.service_container_definition.json_map_encoded}]"
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
   task_role_arn            = aws_iam_role.ecs_task_role.arn
   network_mode             = "awsvpc"
@@ -22,7 +22,7 @@ resource "aws_cloudwatch_log_group" "service" {
 }
 
 module "service_container_definition" {
-  count = var.container_definition_json != null ? 0 : 1
+  count = var.container_definitions != null ? 0 : 1
 
   source  = "cloudposse/ecs-container-definition/aws"
   version = "0.58.1"
