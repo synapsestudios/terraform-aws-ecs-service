@@ -58,6 +58,7 @@ You can do this by commenting out the entire module, running a terraform apply, 
 | <a name="input_azs"></a> [azs](#input\_azs) | Availability zones | `list(string)` | n/a | yes |
 | <a name="input_cluster_arn"></a> [cluster\_arn](#input\_cluster\_arn) | ECS cluster to deploy into | `string` | n/a | yes |
 | <a name="input_command"></a> [command](#input\_command) | Container startup command | `list(string)` | n/a | yes |
+| <a name="input_container_definition_json"></a> [container\_definition\_json](#input\_container\_definition\_json) | JSON string of the container definition | `string` | `null` | no |
 | <a name="input_container_image"></a> [container\_image](#input\_container\_image) | Image tag of the Docker container to use for this service | `string` | n/a | yes |
 | <a name="input_container_port"></a> [container\_port](#input\_container\_port) | Port exposed by the container | `number` | n/a | yes |
 | <a name="input_container_secrets"></a> [container\_secrets](#input\_container\_secrets) | The Secrets to Pass to the container. | <pre>list(object({<br>    name      = string<br>    valueFrom = string<br>  }))</pre> | `[]` | no |
@@ -72,8 +73,9 @@ You can do this by commenting out the entire module, running a terraform apply, 
 | <a name="input_listener_arn"></a> [listener\_arn](#input\_listener\_arn) | ALB listener ARN to add listener rule to | `string` | n/a | yes |
 | <a name="input_service_name"></a> [service\_name](#input\_service\_name) | Service directory in the application git repo | `string` | n/a | yes |
 | <a name="input_subnets"></a> [subnets](#input\_subnets) | List of subnet names the service will reside on. | `list(string)` | n/a | yes |
+| <a name="input_task_cpu"></a> [task\_cpu](#input\_task\_cpu) | Task CPU | `number` | `1024` | no |
+| <a name="input_task_memory"></a> [task\_memory](#input\_task\_memory) | Task memory | `number` | `2048` | no |
 | <a name="input_use_database_cluster"></a> [use\_database\_cluster](#input\_use\_database\_cluster) | Whether or not we should create a DB cluster and inject the database connection string into the container | `bool` | n/a | yes |
-| <a name="input_use_hostname"></a> [use\_hostname](#input\_use\_hostname) | Whether or not we should create a target group and listener to attach this service to a load balancer | `bool` | n/a | yes |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | VPC to deploy into | `string` | n/a | yes |
 
 ## Outputs
