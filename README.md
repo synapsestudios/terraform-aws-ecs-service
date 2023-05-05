@@ -58,7 +58,7 @@ You can do this by commenting out the entire module, running a terraform apply, 
 | <a name="input_azs"></a> [azs](#input\_azs) | Availability zones | `list(string)` | n/a | yes |
 | <a name="input_cluster_arn"></a> [cluster\_arn](#input\_cluster\_arn) | ECS cluster to deploy into | `string` | n/a | yes |
 | <a name="input_command"></a> [command](#input\_command) | Container startup command | `list(string)` | n/a | yes |
-| <a name="input_container_definition_json"></a> [container\_definition\_json](#input\_container\_definition\_json) | JSON string of the container definition | `string` | `null` | no |
+| <a name="input_container_definitions_json"></a> [container\_definitions\_json](#input\_container\_definitions\_json) | List of container definition JSON strings | `list(string)` | `null` | no |
 | <a name="input_container_image"></a> [container\_image](#input\_container\_image) | Image tag of the Docker container to use for this service | `string` | n/a | yes |
 | <a name="input_container_port"></a> [container\_port](#input\_container\_port) | Port exposed by the container | `number` | n/a | yes |
 | <a name="input_container_secrets"></a> [container\_secrets](#input\_container\_secrets) | The Secrets to Pass to the container. | <pre>list(object({<br>    name      = string<br>    valueFrom = string<br>  }))</pre> | `[]` | no |
