@@ -87,11 +87,6 @@ variable "use_database_cluster" {
   description = "Whether or not we should create a DB cluster and inject the database connection string into the container"
 }
 
-variable "use_hostname" {
-  type        = bool
-  description = "Whether or not we should create a target group and listener to attach this service to a load balancer"
-}
-
 variable "ecs_desired_count" {
   type        = number
   default     = 1
@@ -114,4 +109,22 @@ variable "db_instance_count" {
   type        = number
   default     = 1
   description = "How many RDS instances to create"
+}
+
+variable "container_definition_json" {
+  type        = string
+  description = "JSON string of the container definition"
+  default     = null
+}
+
+variable "task_memory" {
+  type        = number
+  description = "Task memory"
+  default     = 2048
+}
+
+variable "task_cpu" {
+  type        = number
+  description = "Task CPU"
+  default     = 1024
 }

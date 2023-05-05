@@ -1,13 +1,19 @@
 
 resource "aws_ecs_task_definition" "service" {
   family                   = var.service_name
-  container_definitions    = "[${module.service_container_definition.json_map_encoded}]"
+  container_definitions    = var.container_definition_json != null ? "[${var.container_definition_json}]" : "[${module.service_container_definition.json_map_encoded}]"
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
   task_role_arn            = aws_iam_role.ecs_task_role.arn
   network_mode             = "awsvpc"
-  memory                   = 2048
-  cpu                      = 1024
+  memory                   = var.task_memory
+  cpu                      = var.task_cpu
   requires_compatibilities = ["FARGATE"]
+
+  runtime_platform {
+    # Required if using Fargate launch type
+    operating_system_family = "LINUX"
+  }
+
 }
 
 #tfsec:ignore:aws-cloudwatch-log-group-customer-key
@@ -16,6 +22,8 @@ resource "aws_cloudwatch_log_group" "service" {
 }
 
 module "service_container_definition" {
+  count = var.container_definition_json != null ? 0 : 1
+
   source  = "cloudposse/ecs-container-definition/aws"
   version = "0.58.1"
 
