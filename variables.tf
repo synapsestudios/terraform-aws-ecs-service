@@ -111,9 +111,9 @@ variable "db_instance_count" {
   description = "How many RDS instances to create"
 }
 
-variable "container_definition_json" {
-  type        = string
-  description = "JSON string of the container definition"
+variable "container_definitions_json" {
+  type        = list(string)
+  description = "List of container definition JSON strings"
   default     = null
 }
 
