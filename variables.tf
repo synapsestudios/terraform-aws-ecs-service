@@ -15,7 +15,7 @@ variable "subnets" {
 
 variable "container_image" {
   type        = string
-  description = "Image tag of the Docker container to use for this service"
+  description = "Image tag of the Docker container to use for this service (Use null if container_definitions is set)"
 }
 
 variable "azs" {
@@ -28,7 +28,7 @@ variable "environment_variables" {
     name  = string
     value = string
   }))
-  description = "The environment variables to pass to the container. This is a list of maps."
+  description = "The environment variables to pass to the container. This is a list of maps. (Do not use if container_definitions is set)"
   default     = []
 }
 
@@ -37,7 +37,7 @@ variable "container_secrets" {
     name      = string
     valueFrom = string
   }))
-  description = "The Secrets to Pass to the container."
+  description = "The Secrets to Pass to the container. (Do not use if container_definitions is set)"
   default     = []
 }
 
@@ -53,7 +53,7 @@ variable "alb_security_group_id" {
 
 variable "command" {
   type        = list(string)
-  description = "Container startup command"
+  description = "Container startup command (Use null if container_definitions is set)"
 }
 
 variable "hostname" {
@@ -73,7 +73,7 @@ variable "container_port" {
 
 variable "host_port" {
   type        = number
-  description = "Port exposed by the host"
+  description = "Port exposed by the host (Do not use if container_definitions is set)"
   default     = null
 }
 
@@ -127,4 +127,9 @@ variable "task_cpu" {
   type        = number
   description = "Task CPU"
   default     = 1024
+}
+
+variable "load_balancer_container_name" {
+  type        = string
+  description = "Container name to use for load balancer target group forwarder"
 }

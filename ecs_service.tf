@@ -7,7 +7,7 @@ resource "aws_ecs_service" "this" {
 
   load_balancer {
     target_group_arn = aws_lb_target_group.this.arn
-    container_name   = var.service_name
+    container_name   = var.load_balancer_container_name != null ? var.load_balancer_container_name : var.service_name
     container_port   = var.container_port
   }
 
