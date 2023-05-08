@@ -133,3 +133,9 @@ variable "load_balancer_container_name" {
   type        = string
   description = "Container name to use for load balancer target group forwarder"
 }
+
+variable "assign_public_ip" {
+  type        = bool
+  description = "Whether or not to assign a public IP to the task"
+  default     = false
+}

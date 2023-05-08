@@ -16,7 +16,7 @@ resource "aws_ecs_service" "this" {
     security_groups = [aws_security_group.ecs_task.id]
     # If you are using Fargate tasks, in order for the task to pull the container image it must either use a public subnet and be assigned a
     # public IP address or a private subnet that has a route to the internet or a NAT gateway that can route requests to the internet.
-    assign_public_ip = false
+    assign_public_ip = var.assign_public_ip
   }
 
   # This allows dynamic scaling and external deployments
