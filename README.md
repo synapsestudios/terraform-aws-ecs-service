@@ -55,6 +55,7 @@ You can do this by commenting out the entire module, running a terraform apply, 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_alb_security_group_id"></a> [alb\_security\_group\_id](#input\_alb\_security\_group\_id) | Security Group ID for the ALB | `string` | n/a | yes |
+| <a name="input_assign_public_ip"></a> [assign\_public\_ip](#input\_assign\_public\_ip) | Whether or not to assign a public IP to the task | `bool` | `false` | no |
 | <a name="input_azs"></a> [azs](#input\_azs) | Availability zones | `list(string)` | n/a | yes |
 | <a name="input_cluster_arn"></a> [cluster\_arn](#input\_cluster\_arn) | ECS cluster to deploy into | `string` | n/a | yes |
 | <a name="input_command"></a> [command](#input\_command) | Container startup command (Use null if container\_definitions is set) | `list(string)` | n/a | yes |
