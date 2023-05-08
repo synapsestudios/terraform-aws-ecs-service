@@ -57,20 +57,21 @@ You can do this by commenting out the entire module, running a terraform apply, 
 | <a name="input_alb_security_group_id"></a> [alb\_security\_group\_id](#input\_alb\_security\_group\_id) | Security Group ID for the ALB | `string` | n/a | yes |
 | <a name="input_azs"></a> [azs](#input\_azs) | Availability zones | `list(string)` | n/a | yes |
 | <a name="input_cluster_arn"></a> [cluster\_arn](#input\_cluster\_arn) | ECS cluster to deploy into | `string` | n/a | yes |
-| <a name="input_command"></a> [command](#input\_command) | Container startup command | `list(string)` | n/a | yes |
+| <a name="input_command"></a> [command](#input\_command) | Container startup command (Use null if container\_definitions is set) | `list(string)` | n/a | yes |
 | <a name="input_container_definitions"></a> [container\_definitions](#input\_container\_definitions) | A list of valid container definitions provided as a single valid JSON document. By default, this module will generate a container definition for you. If you need to provide your own or have multiple, you can do so here. | `string` | `null` | no |
-| <a name="input_container_image"></a> [container\_image](#input\_container\_image) | Image tag of the Docker container to use for this service | `string` | n/a | yes |
+| <a name="input_container_image"></a> [container\_image](#input\_container\_image) | Image tag of the Docker container to use for this service (Use null if container\_definitions is set) | `string` | n/a | yes |
 | <a name="input_container_port"></a> [container\_port](#input\_container\_port) | Port exposed by the container | `number` | n/a | yes |
-| <a name="input_container_secrets"></a> [container\_secrets](#input\_container\_secrets) | The Secrets to Pass to the container. | <pre>list(object({<br>    name      = string<br>    valueFrom = string<br>  }))</pre> | `[]` | no |
+| <a name="input_container_secrets"></a> [container\_secrets](#input\_container\_secrets) | The Secrets to Pass to the container. (Do not use if container\_definitions is set) | <pre>list(object({<br>    name      = string<br>    valueFrom = string<br>  }))</pre> | `[]` | no |
 | <a name="input_db_instance_class"></a> [db\_instance\_class](#input\_db\_instance\_class) | Size of instances within the RDS cluster | `string` | `"db.t4g.medium"` | no |
 | <a name="input_db_instance_count"></a> [db\_instance\_count](#input\_db\_instance\_count) | How many RDS instances to create | `number` | `1` | no |
 | <a name="input_db_name"></a> [db\_name](#input\_db\_name) | Name of the postgres database to create, if creating an RDS cluster | `string` | `"main"` | no |
 | <a name="input_ecs_desired_count"></a> [ecs\_desired\_count](#input\_ecs\_desired\_count) | How many tasks to launch in ECS service | `number` | `1` | no |
-| <a name="input_environment_variables"></a> [environment\_variables](#input\_environment\_variables) | The environment variables to pass to the container. This is a list of maps. | <pre>list(object({<br>    name  = string<br>    value = string<br>  }))</pre> | `[]` | no |
+| <a name="input_environment_variables"></a> [environment\_variables](#input\_environment\_variables) | The environment variables to pass to the container. This is a list of maps. (Do not use if container\_definitions is set) | <pre>list(object({<br>    name  = string<br>    value = string<br>  }))</pre> | `[]` | no |
 | <a name="input_health_check_path"></a> [health\_check\_path](#input\_health\_check\_path) | Path to use for health checks | `string` | n/a | yes |
-| <a name="input_host_port"></a> [host\_port](#input\_host\_port) | Port exposed by the host | `number` | `null` | no |
+| <a name="input_host_port"></a> [host\_port](#input\_host\_port) | Port exposed by the host (Do not use if container\_definitions is set) | `number` | `null` | no |
 | <a name="input_hostname"></a> [hostname](#input\_hostname) | Hostname to use for listener rule | `string` | n/a | yes |
 | <a name="input_listener_arn"></a> [listener\_arn](#input\_listener\_arn) | ALB listener ARN to add listener rule to | `string` | n/a | yes |
+| <a name="input_load_balancer_container_name"></a> [load\_balancer\_container\_name](#input\_load\_balancer\_container\_name) | Container name to use for load balancer target group forwarder | `string` | n/a | yes |
 | <a name="input_service_name"></a> [service\_name](#input\_service\_name) | Service directory in the application git repo | `string` | n/a | yes |
 | <a name="input_subnets"></a> [subnets](#input\_subnets) | List of subnet names the service will reside on. | `list(string)` | n/a | yes |
 | <a name="input_task_cpu"></a> [task\_cpu](#input\_task\_cpu) | Task CPU | `number` | `1024` | no |
