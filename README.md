@@ -72,7 +72,7 @@ You can do this by commenting out the entire module, running a terraform apply, 
 | <a name="input_host_port"></a> [host\_port](#input\_host\_port) | Port exposed by the host (Do not use if container\_definitions is set) | `number` | `null` | no |
 | <a name="input_hostname"></a> [hostname](#input\_hostname) | Hostname to use for listener rule | `string` | n/a | yes |
 | <a name="input_listener_arn"></a> [listener\_arn](#input\_listener\_arn) | ALB listener ARN to add listener rule to | `string` | n/a | yes |
-| <a name="input_load_balancer_container_name"></a> [load\_balancer\_container\_name](#input\_load\_balancer\_container\_name) | Container name to use for load balancer target group forwarder | `string` | n/a | yes |
+| <a name="input_load_balancer_container_name"></a> [load\_balancer\_container\_name](#input\_load\_balancer\_container\_name) | Container name to use for load balancer target group forwarder | `string` | `null` | no |
 | <a name="input_service_name"></a> [service\_name](#input\_service\_name) | Service directory in the application git repo | `string` | n/a | yes |
 | <a name="input_subnets"></a> [subnets](#input\_subnets) | List of subnet names the service will reside on. | `list(string)` | n/a | yes |
 | <a name="input_task_cpu"></a> [task\_cpu](#input\_task\_cpu) | Task CPU | `number` | `1024` | no |
