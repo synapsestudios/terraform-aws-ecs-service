@@ -15,7 +15,7 @@ variable "subnets" {
 
 variable "container_image" {
   type        = string
-  description = "Image tag of the Docker container to use for this service"
+  description = "Image tag of the Docker container to use for this service (Use null if container_definitions is set)"
 }
 
 variable "azs" {
@@ -28,7 +28,7 @@ variable "environment_variables" {
     name  = string
     value = string
   }))
-  description = "The environment variables to pass to the container. This is a list of maps."
+  description = "The environment variables to pass to the container. This is a list of maps. (Do not use if container_definitions is set)"
   default     = []
 }
 
@@ -37,7 +37,7 @@ variable "container_secrets" {
     name      = string
     valueFrom = string
   }))
-  description = "The Secrets to Pass to the container."
+  description = "The Secrets to Pass to the container. (Do not use if container_definitions is set)"
   default     = []
 }
 
@@ -53,7 +53,7 @@ variable "alb_security_group_id" {
 
 variable "command" {
   type        = list(string)
-  description = "Container startup command"
+  description = "Container startup command (Use null if container_definitions is set)"
 }
 
 variable "hostname" {
@@ -73,7 +73,7 @@ variable "container_port" {
 
 variable "host_port" {
   type        = number
-  description = "Port exposed by the host"
+  description = "Port exposed by the host (Do not use if container_definitions is set)"
   default     = null
 }
 
@@ -85,11 +85,6 @@ variable "health_check_path" {
 variable "use_database_cluster" {
   type        = bool
   description = "Whether or not we should create a DB cluster and inject the database connection string into the container"
-}
-
-variable "use_hostname" {
-  type        = bool
-  description = "Whether or not we should create a target group and listener to attach this service to a load balancer"
 }
 
 variable "ecs_desired_count" {
@@ -114,4 +109,33 @@ variable "db_instance_count" {
   type        = number
   default     = 1
   description = "How many RDS instances to create"
+}
+
+variable "container_definitions" {
+  type        = string
+  description = "A list of valid container definitions provided as a single valid JSON document. By default, this module will generate a container definition for you. If you need to provide your own or have multiple, you can do so here."
+  default     = null
+}
+
+variable "task_memory" {
+  type        = number
+  description = "Task memory"
+  default     = 2048
+}
+
+variable "task_cpu" {
+  type        = number
+  description = "Task CPU"
+  default     = 1024
+}
+
+variable "load_balancer_container_name" {
+  type        = string
+  description = "Container name to use for load balancer target group forwarder"
+}
+
+variable "assign_public_ip" {
+  type        = bool
+  description = "Whether or not to assign a public IP to the task"
+  default     = false
 }
