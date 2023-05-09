@@ -132,7 +132,7 @@ variable "task_cpu" {
 variable "load_balancer_container_name" {
   type        = string
   description = "Container name to use for load balancer target group forwarder"
-  default    = null
+  default     = null
 }
 
 variable "assign_public_ip" {
