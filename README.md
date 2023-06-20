@@ -68,6 +68,7 @@ You can do this by commenting out the entire module, running a terraform apply, 
 | <a name="input_db_name"></a> [db\_name](#input\_db\_name) | Name of the postgres database to create, if creating an RDS cluster | `string` | `"main"` | no |
 | <a name="input_ecs_desired_count"></a> [ecs\_desired\_count](#input\_ecs\_desired\_count) | How many tasks to launch in ECS service | `number` | `1` | no |
 | <a name="input_environment_variables"></a> [environment\_variables](#input\_environment\_variables) | The environment variables to pass to the container. This is a list of maps. (Do not use if container\_definitions is set) | <pre>list(object({<br>    name  = string<br>    value = string<br>  }))</pre> | `[]` | no |
+| <a name="input_fake_var"></a> [fake\_var](#input\_fake\_var) | Fake variable to test docs | `string` | `null` | no |
 | <a name="input_health_check_path"></a> [health\_check\_path](#input\_health\_check\_path) | Path to use for health checks | `string` | n/a | yes |
 | <a name="input_host_port"></a> [host\_port](#input\_host\_port) | Port exposed by the host (Do not use if container\_definitions is set) | `number` | `null` | no |
 | <a name="input_hostname"></a> [hostname](#input\_hostname) | Hostname to use for listener rule | `string` | n/a | yes |
