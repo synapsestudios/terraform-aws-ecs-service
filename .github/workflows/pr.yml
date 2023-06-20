@@ -5,6 +5,11 @@ on:
       - "*"
       - "*/*"
       - "**"
+permissions:
+  actions: write
+  checks: write
+  contents: write
+  security-events: write
 jobs:
   terraform-format-test:
     uses: ./.github/workflows/terraform_format.yml
