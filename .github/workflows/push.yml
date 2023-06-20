@@ -1,0 +1,7 @@
+name: Push Jobs
+on:
+  push:
+    branches: [main, master]
+jobs:
+  tfscan:
+    uses: synapsestudios/.github/workflows/tf-scan.yml@master
