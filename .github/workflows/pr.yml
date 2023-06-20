@@ -9,7 +9,7 @@ jobs:
   terraform-format-test:
     uses: ./.github/workflows/terraform_format.yml
   tfscan:
-    uses: synapsestudios/.github/workflows/tf-scan.yml@master
+    uses: synapsestudios/.github/.github/workflows/tf-scan.yml@master
   terraform-docs:
     needs: [terraform-format-test, tfscan]
     uses: ./.github/workflows/documentation.yml

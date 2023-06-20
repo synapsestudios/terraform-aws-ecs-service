@@ -4,4 +4,4 @@ on:
     - cron: "0 0 * * 6"
 jobs:
   tfscan:
-    uses: synapsestudios/.github/workflows/tf-scan.yml@master
+    uses: synapsestudios/.github/.github/workflows/tf-scan.yml@master
