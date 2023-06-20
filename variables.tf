@@ -140,3 +140,9 @@ variable "assign_public_ip" {
   description = "Whether or not to assign a public IP to the task"
   default     = false
 }
+
+variable "fake_var" {
+  type        = string
+  description = "Fake variable to test docs"
+  default     = null
+}
