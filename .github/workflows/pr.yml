@@ -6,15 +6,16 @@ on:
       - "*/*"
       - "**"
 permissions:
-  actions: write
-  checks: write
-  contents: write
+  actions: read
+  contents: read
   security-events: write
 jobs:
   terraform-format-test:
     uses: ./.github/workflows/terraform_format.yml
   tfscan:
     uses: synapsestudios/.github/.github/workflows/tf-scan.yml@master
+    with:
+      directory: "."
   terraform-docs:
     needs: [terraform-format-test, tfscan]
     uses: ./.github/workflows/documentation.yml
