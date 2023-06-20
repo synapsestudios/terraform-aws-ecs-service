@@ -14,8 +14,6 @@ jobs:
     uses: ./.github/workflows/terraform_format.yml
   tfscan:
     uses: synapsestudios/.github/.github/workflows/tf-scan.yml@checkov-testing
-    with:
-      directory: "."
   terraform-docs:
     needs: [terraform-format-test, tfscan]
     uses: ./.github/workflows/documentation.yml
