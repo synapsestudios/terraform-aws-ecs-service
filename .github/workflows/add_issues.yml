@@ -19,7 +19,7 @@ jobs:
 
       - name: Add to project
         id: add_to_project
-        uses: actions/add-to-project@v0.4.0
+        uses: actions/add-to-project@v0.5.0
         with:
           project-url: https://github.com/orgs/synapsestudios/projects/33
           github-token: ${{ steps.generate_token.outputs.token }}
