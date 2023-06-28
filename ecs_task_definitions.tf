@@ -25,7 +25,7 @@ module "service_container_definition" {
   count = var.container_definitions != null ? 0 : 1
 
   source  = "cloudposse/ecs-container-definition/aws"
-  version = "0.58.1"
+  version = "0.60.0"
 
   container_name   = var.service_name
   container_image  = var.container_image
