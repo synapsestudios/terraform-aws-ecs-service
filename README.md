@@ -82,7 +82,7 @@ You can do this by commenting out the entire module, running a terraform apply, 
 
 ## Outputs
 
-| Name | Description | Type | Default |
-|------|-------------|------|:-------:|
-| <a name="log_group_name"></a> [log\_group\_name](#output\log\_group\name) | Cloudwatch log group name | `string` | n/a |
+| Name | Description |
+|------|-------------|
+| <a name="output_log_group_name"></a> [log\_group\_name](#output\_log\_group\_name) | n/a |
 <!-- END_TF_DOCS -->
