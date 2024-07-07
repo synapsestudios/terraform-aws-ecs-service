@@ -26,7 +26,7 @@ You can do this by commenting out the entire module, running a terraform apply, 
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_database"></a> [database](#module\_database) | ./rds_cluster | n/a |
-| <a name="module_service_container_definition"></a> [service\_container\_definition](#module\_service\_container\_definition) | cloudposse/ecs-container-definition/aws | 0.60.0 |
+| <a name="module_service_container_definition"></a> [service\_container\_definition](#module\_service\_container\_definition) | cloudposse/ecs-container-definition/aws | 0.61.1 |
 
 ## Resources
 
