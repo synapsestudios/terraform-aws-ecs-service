@@ -44,3 +44,9 @@ variable "instance_class" {
   type        = string
   description = "Instance class"
 }
+
+variable "ca_cert_identifier" {
+  type        = string
+  description = "Identifier of the CA certificate for the DB instance"
+  default     = "rds-ca-rsa2048-g1"
+}

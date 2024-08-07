@@ -21,6 +21,7 @@ resource "aws_rds_cluster" "this" {
   tags                            = var.tags
   db_cluster_parameter_group_name = "default.aurora-postgresql14"
   deletion_protection             = true
+  ca_certificate_identifier       = var.ca_cert_identifier
 }
 
 resource "random_password" "password" {
@@ -65,6 +66,7 @@ resource "aws_rds_cluster_instance" "this" {
   instance_class               = var.instance_class
   db_subnet_group_name         = aws_db_subnet_group.this.name
   tags                         = var.tags
+  ca_cert_identifier           = var.ca_cert_identifier
 }
 
 resource "aws_db_subnet_group" "this" {
