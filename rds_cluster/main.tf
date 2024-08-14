@@ -21,7 +21,6 @@ resource "aws_rds_cluster" "this" {
   tags                            = var.tags
   db_cluster_parameter_group_name = "default.aurora-postgresql14"
   deletion_protection             = true
-  ca_certificate_identifier       = var.availability_zones.length && var.ca_cert_identifier ? var.ca_cert_identifier : null
 }
 
 resource "random_password" "password" {
