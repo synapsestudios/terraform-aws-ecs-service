@@ -6,7 +6,7 @@ resource "random_id" "final_snapshot_suffix" {
 resource "aws_rds_cluster" "this" {
   cluster_identifier_prefix       = var.name
   engine                          = "aurora-postgresql"
-  engine_version                  = "14.6"
+  engine_version                  = var.engine_version
   database_name                   = var.database_name
   skip_final_snapshot             = false
   final_snapshot_identifier       = "${var.name}-final-${random_id.final_snapshot_suffix.hex}"

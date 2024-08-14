@@ -50,3 +50,9 @@ variable "ca_cert_identifier" {
   description = "Identifier of the CA certificate for the DB instance"
   default     = null
 }
+
+variable "engine_version" {
+  type        = string
+  description = "Database engine version"
+  default     = "14.6"
+}
