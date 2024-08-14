@@ -58,7 +58,7 @@ resource "aws_secretsmanager_secret_version" "connection_string" {
 resource "aws_rds_cluster_instance" "this" {
   count                        = var.instance_count
   engine                       = "aurora-postgresql"
-  engine_version               = "14.6"
+  engine_version               = var.engine_version
   identifier_prefix            = "${var.name}-${count.index + 1}"
   performance_insights_enabled = true
   cluster_identifier           = aws_rds_cluster.this.id
