@@ -44,3 +44,15 @@ variable "instance_class" {
   type        = string
   description = "Instance class"
 }
+
+variable "ca_cert_identifier" {
+  type        = string
+  description = "Identifier of the CA certificate for the DB instance"
+  default     = null
+}
+
+variable "engine_version" {
+  type        = string
+  description = "Database engine version"
+  default     = "14.6"
+}

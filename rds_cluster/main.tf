@@ -6,7 +6,7 @@ resource "random_id" "final_snapshot_suffix" {
 resource "aws_rds_cluster" "this" {
   cluster_identifier_prefix       = var.name
   engine                          = "aurora-postgresql"
-  engine_version                  = "14.6"
+  engine_version                  = var.engine_version
   database_name                   = var.database_name
   skip_final_snapshot             = false
   final_snapshot_identifier       = "${var.name}-final-${random_id.final_snapshot_suffix.hex}"
@@ -58,13 +58,14 @@ resource "aws_secretsmanager_secret_version" "connection_string" {
 resource "aws_rds_cluster_instance" "this" {
   count                        = var.instance_count
   engine                       = "aurora-postgresql"
-  engine_version               = "14.6"
+  engine_version               = var.engine_version
   identifier_prefix            = "${var.name}-${count.index + 1}"
   performance_insights_enabled = true
   cluster_identifier           = aws_rds_cluster.this.id
   instance_class               = var.instance_class
   db_subnet_group_name         = aws_db_subnet_group.this.name
   tags                         = var.tags
+  ca_cert_identifier           = var.ca_cert_identifier
 }
 
 resource "aws_db_subnet_group" "this" {

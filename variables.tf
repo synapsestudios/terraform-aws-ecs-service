@@ -140,3 +140,15 @@ variable "assign_public_ip" {
   description = "Whether or not to assign a public IP to the task"
   default     = false
 }
+
+variable "ca_cert_identifier" {
+  type        = string
+  description = "Identifier of the CA certificate for the DB instance"
+  default     = null
+}
+
+variable "rds_cluster_engine_version" {
+  type        = string
+  description = "Database engine version"
+  default     = "14.6"
+}

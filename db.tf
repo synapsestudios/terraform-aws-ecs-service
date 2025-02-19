@@ -8,4 +8,6 @@ module "database" {
   name               = var.service_name
   vpc_id             = var.vpc_id
   database_name      = var.db_name
+  ca_cert_identifier = var.ca_cert_identifier
+  engine_version     = var.rds_cluster_engine_version
 }
