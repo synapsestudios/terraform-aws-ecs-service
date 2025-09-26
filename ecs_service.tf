@@ -11,7 +11,7 @@ resource "aws_ecs_service" "this" {
     container_port   = var.container_port
     advanced_configuration {
       alternate_target_group_arn = aws_lb_target_group.green
-      production_listener_rule   = aws_lb_listener_rule
+      production_listener_rule   = aws_lb_listener_rule.blue
       role_arn                   = aws_iam_role.ecs_infra_lb_role.arn
     }
   }
