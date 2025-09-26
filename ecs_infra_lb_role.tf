@@ -15,3 +15,8 @@ data "aws_iam_policy_document" "ecs_infrastructure_trust_policy" {
     }
   }
 }
+
+resource "aws_iam_role_policy_attachment" "cognito" {
+  role       = aws_iam_role.ecs_infra_lb_role
+  policy_arn = "arn:aws:iam::aws:policy/AmazonECSInfrastructureRolePolicyForLoadBalancers"
+}
