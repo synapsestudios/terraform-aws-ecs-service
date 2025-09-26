@@ -13,6 +13,7 @@ resource "aws_ecs_service" "this" {
       alternate_target_group_arn = aws_lb_target_group.green.arn
       production_listener_rule   = aws_lb_listener_rule.blue.arn
       role_arn                   = aws_iam_role.ecs_infra_lb_role.arn
+      test_listener_rule         = aws_lb_listener_rule.green.arn
     }
   }
 
