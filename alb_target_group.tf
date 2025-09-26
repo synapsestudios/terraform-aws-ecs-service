@@ -103,7 +103,7 @@ resource "aws_lb_target_group" "green" {
 }
 
 resource "aws_lb_listener_rule" "green" {
-  listener_arn = var.listener_arn_green
+  listener_arn = var.listener_arn
 
   action {
     type             = "forward"
