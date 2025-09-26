@@ -7,8 +7,8 @@ resource "aws_iam_role" "ecs_infra_lb_role" {
 data "aws_iam_policy_document" "ecs_infrastructure_trust_policy" {
   statement {
     actions = ["sts:AssumeRole"]
-    sid = "AllowAccessToECSForInfrastructureManagement"
-    effect = "Allow"
+    sid     = "AllowAccessToECSForInfrastructureManagement"
+    effect  = "Allow"
     principals {
       type        = "Service"
       identifiers = ["ecs.amazonaws.com"]

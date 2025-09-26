@@ -47,7 +47,7 @@ variable "listener_arn" {
 }
 
 variable "listener_arn_green" {
-  type = string
+  type        = string
   description = "ALB listener ARN to add the green listener rule to (Only used for blue/green deployments)"
 }
 

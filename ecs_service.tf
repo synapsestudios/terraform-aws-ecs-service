@@ -34,7 +34,7 @@ resource "aws_ecs_service" "this" {
   }
 
   deployment_configuration {
-    strategy = "BLUE_GREEN"
+    strategy             = "BLUE_GREEN"
     bake_time_in_minutes = "5"
   }
 

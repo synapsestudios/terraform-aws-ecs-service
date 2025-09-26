@@ -1,25 +1,25 @@
 locals {
   common_tg_config = {
     deregistration_delay = 5
-    protocol = "HTTP"
-    target_type = "ip"
-    vpc_id = var.vpc_id
+    protocol             = "HTTP"
+    target_type          = "ip"
+    vpc_id               = var.vpc_id
 
     health_check = {
-      enabled = true
-      interval = 5
-      path = var.health_check_path
-      port = var.container_port
-      protocol = "HTTP"
-      timeout = 3
-      healthy_threshold = 2
+      enabled             = true
+      interval            = 5
+      path                = var.health_check_path
+      port                = var.container_port
+      protocol            = "HTTP"
+      timeout             = 3
+      healthy_threshold   = 2
       unhealthy_threshold = 3
-      matcher = "200"
+      matcher             = "200"
     }
 
     stickiness = {
-      enabled = true
-      type = "lb_cookie"
+      enabled         = true
+      type            = "lb_cookie"
       cookie_duration = 86400
     }
   }
