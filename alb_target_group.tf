@@ -37,9 +37,23 @@ resource "aws_lb_target_group" "blue" {
     create_before_destroy = true
   }
 
-  health_check = local.common_tg_config.health_check
+  health_check {
+    enabled             = local.common_tg_config.health_check.enabled
+    interval            = local.common_tg_config.health_check.interval
+    path                = local.common_tg_config.health_check.path
+    port                = local.common_tg_config.health_check.port
+    protocol            = local.common_tg_config.health_check.protocol
+    timeout             = local.common_tg_config.health_check.timeout
+    healthy_threshold   = local.common_tg_config.health_check.healthy_threshold
+    unhealthy_threshold = local.common_tg_config.health_check.unhealthy_threshold
+    matcher             = local.common_tg_config.health_check.matcher
+  }
 
-  stickiness = local.common_tg_config.stickiness
+  stickiness {
+    enabled         = local.common_tg_config.stickiness.enabled
+    type            = local.common_tg_config.stickiness.type
+    cookie_duration = local.common_tg_config.stickiness.cookie_duration
+  }
 }
 
 resource "aws_lb_listener_rule" "blue" {
@@ -69,9 +83,23 @@ resource "aws_lb_target_group" "green" {
     create_before_destroy = true
   }
 
-  health_check = local.common_tg_config.health_check
+  health_check {
+    enabled             = local.common_tg_config.health_check.enabled
+    interval            = local.common_tg_config.health_check.interval
+    path                = local.common_tg_config.health_check.path
+    port                = local.common_tg_config.health_check.port
+    protocol            = local.common_tg_config.health_check.protocol
+    timeout             = local.common_tg_config.health_check.timeout
+    healthy_threshold   = local.common_tg_config.health_check.healthy_threshold
+    unhealthy_threshold = local.common_tg_config.health_check.unhealthy_threshold
+    matcher             = local.common_tg_config.health_check.matcher
+  }
 
-  stickiness = local.common_tg_config.stickiness
+  stickiness {
+    enabled         = local.common_tg_config.stickiness.enabled
+    type            = local.common_tg_config.stickiness.type
+    cookie_duration = local.common_tg_config.stickiness.cookie_duration
+  }
 }
 
 resource "aws_lb_listener_rule" "green" {
