@@ -10,8 +10,8 @@ resource "aws_ecs_service" "this" {
     container_name   = var.load_balancer_container_name != null ? var.load_balancer_container_name : var.service_name
     container_port   = var.container_port
     advanced_configuration {
-      alternate_target_group_arn = aws_lb_target_group.green
-      production_listener_rule   = aws_lb_listener_rule.blue
+      alternate_target_group_arn = aws_lb_target_group.green.arn
+      production_listener_rule   = aws_lb_listener_rule.blue.arn
       role_arn                   = aws_iam_role.ecs_infra_lb_role.arn
     }
   }
