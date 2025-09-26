@@ -43,6 +43,7 @@ module "service_container_definition" {
     logDriver     = "awslogs"
     secretOptions = null,
     options = {
+      awslogs-create-group  = true
       awslogs-group         = aws_cloudwatch_log_group.service.name
       awslogs-region        = data.aws_region.current.name
       awslogs-stream-prefix = "ecs"

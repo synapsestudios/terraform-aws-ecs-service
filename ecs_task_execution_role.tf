@@ -18,6 +18,23 @@ resource "aws_iam_role" "ecs_task_execution_role" {
 EOF
 }
 
+resource "aws_iam_role_policy" "create_log_group" {
+  role   = aws_iam_role.ecs_task_execution_role.name
+  policy = data.aws_iam_policy_document.create_log_group.json
+}
+
+data "aws_iam_policy_document" "create_log_group" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "logs:CreateLogGroup"
+    ]
+    resources = [
+      "*",
+    ]
+  }
+}
+
 resource "aws_iam_role_policy_attachment" "ecs_task_execution_role" {
   role       = aws_iam_role.ecs_task_execution_role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
