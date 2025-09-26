@@ -9,6 +9,11 @@ resource "aws_ecs_service" "this" {
     target_group_arn = aws_lb_target_group.this.arn
     container_name   = var.load_balancer_container_name != null ? var.load_balancer_container_name : var.service_name
     container_port   = var.container_port
+    advanced_configuration {
+      alternate_target_group_arn = aws_lb_target_group.green
+      production_listener_rule   = aws_lb_listener_rule
+      role_arn                   = aws_iam_role.ecs_infra_lb_role.arn
+    }
   }
 
   network_configuration {
@@ -26,6 +31,11 @@ resource "aws_ecs_service" "this" {
       task_definition,
       load_balancer
     ]
+  }
+
+  deployment_configuration {
+    strategy = "BLUE_GREEN"
+    bake_time_in_minutes = "5"
   }
 
   deployment_circuit_breaker {

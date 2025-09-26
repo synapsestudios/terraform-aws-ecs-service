@@ -46,6 +46,11 @@ variable "listener_arn" {
   description = "ALB listener ARN to add listener rule to"
 }
 
+variable "listener_arn_green" {
+  type = string
+  description = "ALB listener ARN to add the green listener rule to (Only used for blue/green deployments)"
+}
+
 variable "alb_security_group_id" {
   type        = string
   description = "Security Group ID for the ALB"
