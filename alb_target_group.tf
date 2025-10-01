@@ -112,7 +112,7 @@ resource "aws_lb_listener_rule" "green" {
 
   condition {
     host_header {
-      values = [var.hostname]
+      values = [format("test-%", test-var.hostname)]
     }
   }
 }
