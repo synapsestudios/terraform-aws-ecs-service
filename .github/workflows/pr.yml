@@ -18,4 +18,4 @@ jobs:
     uses: ./.github/workflows/tf-docs.yml
   tfscan:
     needs: [terraform-format-test, terraform-docs]
-    uses: synapsestudios/.github/.github/workflows/tf-scan.yml@master
+    uses: synapsestudios/.github/.github/workflows/tf-scan.yml@17a6beba140cbfc28009ef980bda6264feff4359 # master
